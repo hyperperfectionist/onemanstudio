@@ -127,9 +127,9 @@ nav{
 .project-thumbnail{
     position: relative;
     height: auto;
-    width: 100%;
+    width: 100% ;
     padding:  2.083vw;
-        padding: max(12px, 2vw);
+        padding: max(12px, 2vw, 24px);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -138,44 +138,10 @@ nav{
 }
 
 
-.comparison{
-    display: flex;
-    gap: 16px;
-    position: relative;
-    z-index: 5;
-
-    button{
-
-        all: unset;
-        font-size: 16px;
-        letter-spacing: calc(-0.06 * 16px);
-        line-height: 1;
-        color: #ffffff80;
-        cursor: pointer;
-    }
-
-    .inactive:hover{
-        color: #fff;
-    }
-
-    .active{
-        padding: 4px 12px;
-        color: #000;
-        background-color: #fff;
-        border-radius: 12px;
-
-    }
-
-    .active:hover{
-        opacity: .8;
-    }
-}
-
-
 .project-thumbnail-border{
     position: relative;
     z-index: 5;
-    width: auto;
+    width: 100%;
     height: auto;
     padding: max(0.2vw, 0.5vw);
     border-radius: 12px;
