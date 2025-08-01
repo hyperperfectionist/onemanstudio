@@ -91,7 +91,21 @@
             fetchpriority="high">
 
             <div class="project-thumbnail-border">
-            <img src="../project-design/home-kati.webp" class="project-thumbnail-img">
+                <img 
+                src="https://ik.imagekit.io/onemanstudio/home-kati.webp?tr=w-1600,f-webp" 
+                srcset="
+                  https://ik.imagekit.io/onemanstudio/home-kati.webp?tr=w-600,f-webp 600w,
+                  https://ik.imagekit.io/onemanstudio/home-kati.webp?tr=w-1200,f-webp 1200w,
+                  https://ik.imagekit.io/onemanstudio/home-kati.webp?tr=w-1600,f-webp 1600w,
+                  https://ik.imagekit.io/onemanstudio/home-kati.webp?tr=w-2000,f-webp 2000w
+                "
+                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 80vw, 50vw"
+                class="project-thumbnail-img"
+                loading="eager"
+                fetchpriority="high"
+                decoding="async"
+                alt="Project Kati"
+              />
             </div>
 
         </div>            
