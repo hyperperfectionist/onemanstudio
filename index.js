@@ -196,7 +196,7 @@ if (animationsAllowed) {
     timeline.fromTo(
       split.words,
       { opacity: 0.2 },
-      { opacity: 1, duration: .5, stagger: .01, ease: 'power3.out' },
+      { opacity: 1, duration: .05, stagger: .002, ease: 'power3.out' },
       i === 0 ? 0 : '>'
     );
   });
@@ -204,7 +204,7 @@ if (animationsAllowed) {
   ScrollTrigger.create({
     trigger: splitTypes[0],
     start: 'top 60%',
-    end: '100% 20%',
+    end: '200% 20%',
     scrub: 1,
     markers: false,
     animation: timeline,
@@ -214,6 +214,7 @@ if (animationsAllowed) {
 } else {
   console.log('Animations disabled for mobile/tablet devices or screens < 1024px');
 }
+
 
 
 
