@@ -45,6 +45,9 @@ a{
     line-height: 1.2;
     display: inline-block;
 }
+img{
+    pointer-events: none;
+}
 
 
 

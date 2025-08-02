@@ -87,6 +87,8 @@ if (animationsAllowed) {
   const heroTitles = ["Visionaries", "Champions", "Founders", "Hustlers", "Startups"];
   const heroImages = document.querySelectorAll(".hero-backgrounds-container .hero-background");
   const heroTitleSpan = document.querySelector(".hero-content h1 span");
+
+  
   let heroCurrentIndex = 0;
   let heroTitleSwitchLocked = false;
   const heroTitleSwitchDelay = 1500;
@@ -166,59 +168,52 @@ if (animationsAllowed) {
     };
 
     heroImages.forEach((img) => {
-      img.addEventListener("click", handleHeroImageClick);
+      img.addEventListener("mousedown", handleHeroImageClick);
     });
   }
 
-  // --- Reveal Text Animation (SplitType + GSAP ScrollTrigger) ---
+
+  
+
+  // --- Reveal Text Animation (SplitType + GSAP ScrollTrigger using opacity) ---
   gsap.registerPlugin(ScrollTrigger);
   const splitTypes = document.querySelectorAll('.reveal-type');
   let timeline = gsap.timeline();
-  const splitInstances = [];
 
-  splitTypes.forEach((char, i) => {
-    const text = new SplitType(char, { types: 'words' });
+  splitTypes.forEach((el, i) => {
+    const split = new SplitType(el, { types: 'words' });
 
-    text.words.forEach((word, idx) => {
+    split.words.forEach((word, idx) => {
       word.style.display = 'inline-block';
-      if (idx < text.words.length - 1) {
-        const space = document.createTextNode('  ');
+      if (idx < split.words.length - 1) {
+        const space = document.createTextNode(' ');
         word.parentNode.insertBefore(space, word.nextSibling);
       }
     });
 
-    splitInstances.push({
-      element: char,
-      text: text,
-      bg: char.dataset.bgColor,
-      fg: char.dataset.fgColor,
-    });
+    gsap.set(split.words, { opacity: 0.2,});
 
-    gsap.set(text.words, { color: char.dataset.bgColor });
-  });
-
-  splitInstances.forEach((instance, i) => {
-    timeline.fromTo(instance.text.words,
-      { color: instance.bg },
-      { color: instance.fg, duration: 0.05, stagger: 0.002 },
-      i === 0 ? 0 : ">"
+    timeline.fromTo(
+      split.words,
+      { opacity: 0.2 },
+      { opacity: 1, duration: .5, stagger: .01, ease: 'power3.out' },
+      i === 0 ? 0 : '>'
     );
   });
 
   ScrollTrigger.create({
     trigger: splitTypes[0],
     start: 'top 60%',
-    end: '200% 20%',
+    end: '100% 20%',
     scrub: 1,
     markers: false,
     animation: timeline,
-    toggleActions: 'play play reverse reverse',
+    toggleActions: 'play play reverse reverse'
   });
 
 } else {
   console.log('Animations disabled for mobile/tablet devices or screens < 1024px');
 }
-
 
 
 
