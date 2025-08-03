@@ -145,6 +145,11 @@ footer img{
         font-size: 20px;
         line-height: 1.2;
         letter-spacing: calc(-0.06 * 20px);  
+
+        span{
+            color: var(--gray);
+            font-size: 14px;
+        }
     }
     .terms{
         color: var(--gray);
@@ -154,6 +159,8 @@ footer img{
     }
     
 
+
+    
 
 
 
@@ -248,6 +255,22 @@ footer img{
         }
 
 
+
+      }
+
+
+
+
+
+
+      @media (max-width: 600px){
+
+
+        .footer-links{
+            flex-direction: column;
+            align-items: start;
+            gap: 4px;
+        }
 
       }
 
