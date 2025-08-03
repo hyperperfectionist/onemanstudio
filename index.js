@@ -25,7 +25,6 @@ function handleResizeCheck() {
   const newStatus = shouldRunAnimations();
 
   if (animationsAllowed !== newStatus) {
-    console.warn('Screen threshold crossed. Reloading to apply animation state.');
     location.reload();
   }
 
@@ -198,11 +197,11 @@ if (animationsAllowed) {
       }
     });
 
-    gsap.set(split.words, { opacity: 0.2,});
+    gsap.set(split.words, { opacity: 0.2});
 
     timeline.fromTo(
       split.words,
-      { opacity: 0.2 },
+      { opacity: 0.2},
       { opacity: 1, duration: .05, stagger: .002, ease: 'power3.out' },
       i === 0 ? 0 : '>'
     );
@@ -218,10 +217,7 @@ if (animationsAllowed) {
     toggleActions: 'play play reverse reverse'
   });
 
-} else {
-  console.log('Animations disabled for mobile/tablet devices or screens < 1024px');
 }
-
 
 
 
@@ -284,9 +280,9 @@ projects.forEach((project, index) => {
     img.src = `${baseURL}${filename}?tr=w-800,f-webp`;
     img.srcset = buildSrcset(filename);
     img.sizes = sizes;
-    img.loading = priority === "high" ? "eager" : "lazy";
+    img.loading = "lazy";
     img.decoding = "async";
-    img.fetchPriority = priority;
+    img.fetchPriority = "low";
 
     requestAnimationFrame(() => {
       img.style.opacity = 1;
@@ -311,7 +307,7 @@ projects.forEach((project, index) => {
     beforeBtn.classList.remove("active");
   });
 
-  // Load first image eagerly, rest lazily
-  const priority = index === 0 ? "high" : "low";
-  setImage("after", priority);
+  // Always load images with lazy priority
+  setImage("after", "low");
 });
+
