@@ -147,6 +147,7 @@ if (animationsAllowed) {
         y: -40,
         opacity: 0,
         duration: 0.3,
+        delay: 0.6,
         ease: "power2.in",
         onComplete: () => {
           heroTitleSpan.textContent = newTitle;
@@ -166,10 +167,16 @@ if (animationsAllowed) {
         heroTitleSwitchLocked = false;
       }, heroTitleSwitchDelay);
     };
-
+    // Only trigger on left mouse button (button === 0)
+    const handleHeroImageMouseDown = (e) => {
+      if (e.button !== 0) return;
+      handleHeroImageClick();
+    };
     heroImages.forEach((img) => {
-      img.addEventListener("mousedown", handleHeroImageClick);
+      img.addEventListener("mousedown", handleHeroImageMouseDown);
     });
+
+
   }
 
 

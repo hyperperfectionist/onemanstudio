@@ -50,6 +50,7 @@
         font-size: 64px;
         letter-spacing: calc(-0.06 * 64px);
         line-height: 1;
+        filter: blur(0.75px);
     }
 
     .title-container{
@@ -72,12 +73,14 @@
         display: block;
         margin-left: auto;
         margin-right: auto;
+        filter: blur(0.75px);
     }
 
      p{
         font-size: 20px;
         letter-spacing: calc(-0.06 * 20px);
         line-height: 1.2;
+        filter: blur(0.5px);
      }
 
     a{
@@ -88,6 +91,7 @@
         background-color: #FFF;
         color: black;
         margin-top: -8px;
+        filter: blur(0.5px);
     }
 
 
@@ -125,7 +129,7 @@
     gap: 48px;
     
     p{
-        
+        filter: blur(0.5px);
         text-wrap: pretty;
         font-size: 36px;
         letter-spacing: calc(-0.06 * 36px);
@@ -150,6 +154,7 @@
 
     a{
                 color: black;
+                filter: blur(0.5px);
     }
 
 
@@ -289,6 +294,7 @@
     margin-top: 24px;
 
     p{
+        filter: blur(0.5px);
         span{
             color: #000;
         }
@@ -364,6 +370,7 @@
         font-size: 18px;
         line-height: 1.2;
         letter-spacing: calc(-0.06 * 18px);
+        filter: blur(0.5px);
         
     };
 
@@ -372,6 +379,7 @@
     font-size: 64px;
     line-height: 1; 
     letter-spacing: calc(-0.06 * 64px);
+    filter: blur(0.75px);
     }
 
 }
@@ -421,6 +429,7 @@
         font-size: 32px;
         line-height: 1.2;
         letter-spacing: calc(-0.06 * 32px);
+        filter: blur(0.5px);
     }
 
     p{
@@ -428,6 +437,7 @@
         line-height: 1.2;
         letter-spacing: calc(-0.06 * 18px);
         color: var(--gray);
+        filter: blur(0.5px);
     }
     }
 
@@ -439,6 +449,7 @@
         font-size: 18px;
         line-height: 1.2;
         letter-spacing: calc(-0.06 * 18px);  
+                filter: blur(0.5px);
     }
 }
 
@@ -620,6 +631,37 @@
 
 
 
+      @media (max-width: 1440px) {
+  
+        /* Unified blur filters for elements */
+        .hero-content h1,
+        .hero-content p,
+        .hero-content a,
+        .hero-line,
+        .about-content p,
+        .about-content a,
+        .project-details p,
+        .meet-the-founder-title p,
+        .meet-the-founder-title h2,
+        .meet-the-founder-content-header h3,
+        .meet-the-founder-content-header p,
+        .about-the-founder p {
+          filter: blur(0.4px);
+        }
+      
+        /* Slightly more blur for large titles to match original styling */
+        .hero-content h1,
+        .title-container .hero-line,
+        .meet-the-founder-title h2 {
+          filter: blur(0.6px);
+        }
+      
+      }
+      
+      
+
+
+
 
 
 
@@ -756,6 +798,35 @@
 
 
 
+      @media (max-width: 1024px) {
+  
+        /* Unified blur filters for elements */
+        .hero-content h1,
+        .hero-content p,
+        .hero-content a,
+        .hero-line,
+        .about-content p,
+        .about-content a,
+        .project-details p,
+        .meet-the-founder-title p,
+        .meet-the-founder-title h2,
+        .meet-the-founder-content-header h3,
+        .meet-the-founder-content-header p,
+        .about-the-founder p {
+          filter: blur(0.3px);
+        }
+      
+        /* Slightly more blur for large titles to match original styling */
+        .hero-content h1,
+        .title-container .hero-line,
+        .meet-the-founder-title h2 {
+          filter: blur(0.5px);
+        }
+      
+      }
+
+
+
 
 
 
@@ -800,7 +871,6 @@
 
 
       }
-
 
 
 
