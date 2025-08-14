@@ -180,42 +180,56 @@ if (animationsAllowed) {
 
 
   
+// --- Reveal Text Animation (SplitType + GSAP ScrollTrigger using opacity) ---
+gsap.registerPlugin(ScrollTrigger);
 
-  // --- Reveal Text Animation (SplitType + GSAP ScrollTrigger using opacity) ---
-  gsap.registerPlugin(ScrollTrigger);
-  const splitTypes = document.querySelectorAll('.reveal-type');
-  let timeline = gsap.timeline();
+const splitTypes = document.querySelectorAll('.reveal-type');
+let timeline = gsap.timeline();
 
-  splitTypes.forEach((el, i) => {
-    const split = new SplitType(el, { types: 'words' });
+// Detect if screen width is <= 1440px
+const isSmallScreen = window.innerWidth <= 1440;
 
-    split.words.forEach((word, idx) => {
-      word.style.display = 'inline-block';
-      if (idx < split.words.length - 1) {
-        const space = document.createTextNode(' ');
-        word.parentNode.insertBefore(space, word.nextSibling);
-      }
-    });
+// Adjust blur values based on screen size
+const blurStart = isSmallScreen ? "blur(2px)" : "blur(8px)";
+const blurEnd   = isSmallScreen ? "blur(0.2px)" : "blur(0.5px)";
 
-    gsap.set(split.words, { opacity: 0.2});
+splitTypes.forEach((el, i) => {
+  const split = new SplitType(el, { types: 'words' });
 
-    timeline.fromTo(
-      split.words,
-      { opacity: 0.2},
-      { opacity: 1, duration: .05, stagger: .002, ease: 'power3.out' },
-      i === 0 ? 0 : '>'
-    );
+  split.words.forEach((word, idx) => {
+    word.style.display = 'inline-block';
+    if (idx < split.words.length - 1) {
+      const space = document.createTextNode(' ');
+      word.parentNode.insertBefore(space, word.nextSibling);
+    }
   });
 
-  ScrollTrigger.create({
-    trigger: splitTypes[0],
-    start: 'top 60%',
-    end: '200% 20%',
-    scrub: 1,
-    markers: false,
-    animation: timeline,
-    toggleActions: 'play play reverse reverse'
-  });
+  gsap.set(split.words, { opacity: 0.2, filter: blurStart });
+
+  timeline.fromTo(
+    split.words,
+    { opacity: 0.2, filter: blurStart },
+    { 
+      opacity: 1, 
+      filter: blurEnd, 
+      duration: 0.02,
+      stagger: 0.0005,
+      ease: 'power3.out' 
+    },
+    i === 0 ? 0 : '>'
+  );
+});
+
+ScrollTrigger.create({
+  trigger: splitTypes[0],
+  start: 'top 80%',
+  end: '200% 20%',
+  scrub: 1,
+  markers: false,
+  animation: timeline,
+  toggleActions: 'play play reverse reverse'
+});
+
 
 }
 

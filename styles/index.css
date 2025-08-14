@@ -646,14 +646,14 @@
         .meet-the-founder-content-header h3,
         .meet-the-founder-content-header p,
         .about-the-founder p {
-          filter: blur(0.4px);
+          filter: blur(0.2px);
         }
       
         /* Slightly more blur for large titles to match original styling */
         .hero-content h1,
         .title-container .hero-line,
         .meet-the-founder-title h2 {
-          filter: blur(0.6px);
+          filter: blur(0.4px);
         }
       
       }
@@ -813,14 +813,14 @@
         .meet-the-founder-content-header h3,
         .meet-the-founder-content-header p,
         .about-the-founder p {
-          filter: blur(0.3px);
+          filter: blur(0px);
         }
       
         /* Slightly more blur for large titles to match original styling */
         .hero-content h1,
         .title-container .hero-line,
         .meet-the-founder-title h2 {
-          filter: blur(0.5px);
+          filter: blur(0px);
         }
       
       }
