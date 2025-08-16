@@ -254,7 +254,7 @@ const imageSources = [
   { before: "coral-before.webp", after: "coral.webp" },
   { before: "pb-before.webp", after: "pb.webp" },
   { before: "kati-before.webp", after: "kati.webp" },
-  { before: "law.webp", after: "law.webp" },
+  { before: "sara-before.webp", after: "sara.webp" },
 ];
 
 const baseURL = "https://ik.imagekit.io/onemanstudio/";
