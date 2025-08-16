@@ -136,21 +136,39 @@
         line-height: 1.4;
 
 
-        span{
-            display: inline-block;
-            width: 100%; /* Even without !important, a more specific selector can win */
-            height: auto;
-            border: none;
 
-            
-        .lottie{
-            display: inline-block;
-            height: 120px;
-            width: 120px;
-            
-        }
       }
     }
+
+.about-content p .lottie-container {
+    display: inline-flex;
+    flex-direction: column-reverse;
+    justify-content: center;
+    height: 64px;
+    width: 0;
+    vertical-align: middle;
+    background: none;
+    border: none;
+    padding: 0;
+    margin: 0 4px;
+    border-radius: 8px;
+    opacity: 0;
+    transition: opacity 0.3s;
+    transform: scale(0);
+    
+}
+    
+.lottie-container img ,  .lottie {
+        display: inline-block;
+        height: 64px;
+        width: 64px;
+        margin-top: -10px;
+        margin-left: auto;
+        margin-right: auto;
+        transform: scale(0);
+        transform-origin: center;
+    }
+
 
     a{
                 color: black;
@@ -158,7 +176,7 @@
     }
 
 
-}
+
 
 
 
@@ -263,6 +281,7 @@
 
     a{
         width: 100%;
+        z-index: 999;
     }
 }
 
@@ -280,6 +299,8 @@
     background-blend-mode: plus-lighter;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.40);
     backdrop-filter: blur(2px);
+
+
 }
 
 
