@@ -1,6 +1,5 @@
 
 
-
 nav{
   .logo, .nav-links {
       color: #000;
@@ -24,8 +23,13 @@ nav{
     padding: 80px;
     margin: 0 auto;
     overflow: hidden;
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
-    flex-direction: column;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
     gap: 64px;
 
     .act, .terms-title, .terms-about{
@@ -39,16 +43,26 @@ a{
 }
 
 .act{
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
-    flex-direction: column;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
     gap: 18px;
     
 
 
 
     ul{
+        display: -webkit-box;
+        display: -ms-flexbox;
         display: flex;
-        flex-direction: column;
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+            -ms-flex-direction: column;
+                flex-direction: column;
         gap: 4px;
     }
 }
@@ -79,8 +93,13 @@ ul{
 
 
 .act div{
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
-    flex-direction: column;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
     gap: 8px;
 }
 
