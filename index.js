@@ -1,5 +1,499 @@
-function shouldRunAnimations(){if(window.innerWidth<1024)return!1;let e=navigator.userAgent.toLowerCase(),t=["mobile","iphone","ipod","android","blackberry","windows phone","webos","opera mini"].some(t=>e.includes(t)),r=["ipad","tablet","kindle","silk","playbook","nexus 7","nexus 10","xoom","sch-i800","android 3"].some(t=>e.includes(t)),n="ontouchstart"in window||navigator.maxTouchPoints>0;return!(t||r||n&&window.innerWidth<=1024)}let animationsAllowed=shouldRunAnimations();function handleResizeCheck(){let e=shouldRunAnimations();animationsAllowed!==e&&location.reload(),animationsAllowed=e}if(window.addEventListener("resize",handleResizeCheck),animationsAllowed||document.addEventListener("DOMContentLoaded",function(){document.querySelectorAll(".reveal-type span").forEach(e=>{e.style.display="none"})}),animationsAllowed){let e=new Lenis({duration:1.2,easing:e=>Math.min(1,1.001-Math.pow(2,-10*e))});function t(r){e.raf(r),requestAnimationFrame(t)}e.on("scroll",({scroll:e})=>{let t=document.querySelector(".hero"),r=null==t?void 0:t.nextElementSibling;if(t&&r){let n=t.getBoundingClientRect();if(n.bottom>0&&n.top<window.innerHeight){let o=.2*e;t.style.transform=`translateY(${o}px)`,r.style.transform="translateY(0px)"}else t.style.transform="translateY(0px)",r.style.transform="translateY(0px)"}}),requestAnimationFrame(t),document.querySelectorAll("[data-lenis-link]").forEach(t=>{t.addEventListener("click",r=>{r.preventDefault();let n=t.getAttribute("href"),o=document.querySelector(n);o&&e.scrollTo(o,{duration:1.2,easing:e=>Math.min(1,1.001-Math.pow(2,-10*e))})})});let r=["Visionaries","Champions","Founders","Hustlers","Startups"],n=document.querySelectorAll(".hero-backgrounds-container .hero-background"),o=document.querySelector(".hero-content h1 span"),a=0,i=!1,l=Shery.imageEffect(".hero-backgrounds-container",{style:6,gooey:!0,config:{noiseDetail:{value:100},distortionAmount:{value:0},scale:{value:0},speed:{value:1},zindex:{value:-9996999},aspect:{value:2.002},ignoreShapeAspect:{value:!0},shapePosition:{value:{x:0,y:0}},shapeScale:{value:{x:1,y:1}},shapeEdgeSoftness:{value:0},shapeRadius:{value:0},currentScroll:{value:0},scrollLerp:{value:0},gooey:{value:!0},infiniteGooey:{value:!0},growSize:{value:5},durationOut:{value:1.5},durationIn:{value:1},displaceAmount:{value:.5},masker:{value:!0},maskVal:{value:1},scrollType:{value:0},geoVertex:{value:1},noEffectGooey:{value:!0},onMouse:{value:0},noise_speed:{value:.2},metaball:{value:.09},discard_threshold:{value:.75},antialias_threshold:{value:.1},noise_height:{value:.4},noise_scale:{value:20},a:{value:2},b:{value:1}}});if(o){o.textContent=r[a];let s=()=>{if(i)return;i=!0,a=(a+1)%n.length;let e=r[a];gsap.to(o,{y:-40,opacity:0,duration:.3,delay:.6,ease:"power2.in",onComplete(){o.textContent=e,gsap.fromTo(o,{y:40,opacity:0},{y:0,opacity:1,duration:.4,ease:"power2.out"})}}),l&&"function"==typeof l.refresh&&l.refresh(),setTimeout(()=>{i=!1},1500)},c=e=>{0===e.button&&s()};n.forEach(e=>{e.addEventListener("mousedown",c)})}document.addEventListener("DOMContentLoaded",function(){gsap.registerPlugin(ScrollTrigger);let e=document.querySelectorAll(".reveal-type"),t=gsap.timeline(),r=window.innerWidth<=1440,n=r?"blur(2px)":"blur(4px)",o=r?"blur(0.2px)":"blur(0.5px)";function a(e,t,r){let n=e.getBoundingClientRect(),o=window.innerHeight,a;if(r.includes("center")){let i=parseFloat(r.split(" ")[1])/100,l=n.top+n.height/2;l<(a=o*i)&&t.play()}else if(r.includes("bottom")){let s=parseFloat(r.split(" ")[1])/100;a=o*s,n.bottom<a&&t.play()}}e.forEach((e,r)=>{let a=new SplitType(e,{types:"words"});a.words.forEach((e,t)=>{if(e.style.display="inline-block",t<a.words.length-1){let r=document.createTextNode(" ");e.parentNode.insertBefore(r,e.nextSibling)}}),gsap.set(a.words,{opacity:.5,filter:n}),t.fromTo(a.words,{opacity:.5,filter:n},{opacity:1,filter:o,duration:1.5,stagger:.2,ease:"power3.out"},0===r?0:">")}),e.length>0&&ScrollTrigger.create({trigger:e[0],start:"top 60%",end:"200% 20%",scrub:1,animation:t,toggleActions:"play play reverse reverse"}),e.forEach((e,t)=>{let r=e.querySelector(".underline-link");if(r){let a=r.querySelector(".underline-anim");a||((a=document.createElement("span")).className="underline-anim",r.appendChild(a)),Object.assign(a.style,{position:"absolute",left:0,bottom:"-4px",height:"4px",width:"0%",background:"black",borderRadius:"1px",pointerEvents:"none",filter:n,opacity:.5,transition:"none",zIndex:2}),r.style.position="relative",a.style.display="block",gsap.set(a,{width:"0%",opacity:.5,filter:n});let i=gsap.timeline();i.to(a,{width:"100%",opacity:1,filter:o,duration:1.5,ease:"power3.out"}),ScrollTrigger.create({trigger:e,start:"top 88%",end:"top 87%",scrub:1,animation:i,toggleActions:"play play reverse reverse"})}});let i=document.querySelectorAll(".team-member");i.forEach((e,t)=>{let r=e.querySelector("span");if(r){let n=r.querySelectorAll("img");if(n.length>0){gsap.set(r,{width:0,opacity:0,scale:0}),gsap.set(n,{scale:0,opacity:0,transformOrigin:"center center"});let o=gsap.timeline({paused:!0});o.to(r,{width:180,opacity:1,scale:1,duration:.25,ease:"power2.out"}).to(n,{scale:1,opacity:1,duration:.25,ease:"power2.out",stagger:.08},"-=0.18"),ScrollTrigger.create({trigger:".about-content",start:"-50.8%  100%",end:"-50.8% 60%",animation:o,toggleActions:"play none none reverse",id:`team-member-${t}`,refreshPriority:-1}),a(e,o,"bottom 57.95%")}}});let l=document.querySelectorAll(".lottie-container");l.forEach((e,t)=>{let r=e.querySelector("dotlottie-player"),n=e.querySelectorAll("img"),o=r||n;if(e&&o){gsap.set(e,{width:0,opacity:0,scale:0}),gsap.set(o,{scale:0,opacity:0,transformOrigin:"center center"});let i=gsap.timeline({paused:!0});i.to(e,{width:r?100:64,opacity:1,scale:1,duration:.2,ease:"power2.out"}).to(o,{scale:1,opacity:1,duration:.2,ease:"power2.out",onStart(){r&&"function"==typeof r.play&&r.play()}},"-=0.15");let l=[{start:"center 71%",end:"center 60%"},{start:"center 70%",end:"center 60%"},{start:"center 69.8%",end:"center 60%"},{start:"center 69%",end:"center 60%"},{start:"center 78%",end:"center 60%"},{start:"center 88%",end:"center 60%"},{start:"center 93%",end:"center 60%"}];ScrollTrigger.create({trigger:e,start:l[t]?l[t].start:"center 70%",end:l[t]?l[t].end:"center 60%",animation:i,toggleActions:"play none none reverse",id:`anime-lottie-${t}`,refreshPriority:-1,onEnter(){},onLeaveBack(){r&&"function"==typeof r.stop&&r.stop()}});let s=l[t]?l[t].start:"center 70%";a(e,i,s)}}),setTimeout(()=>{ScrollTrigger.refresh(),setTimeout(()=>{i.forEach((e,t)=>{let r=e.querySelector("span");if(r){let n=e.getBoundingClientRect(),o=window.innerHeight;if(n.bottom<.6*o){let a=gsap.timeline();a.to(r,{width:180,opacity:1,scale:1,duration:.25,ease:"power2.out"}).to(r.querySelectorAll("img"),{scale:1,opacity:1,duration:.25,ease:"power2.out",stagger:.08},"-=0.18")}}}),l.forEach((e,t)=>{let r=e.querySelector("dotlottie-player"),n=e.querySelectorAll("img"),o=r||n;if(e&&o){let a=e.getBoundingClientRect(),i=window.innerHeight,l=[{start:"center 71%",end:"center 60%"},{start:"center 70%",end:"center 60%"},{start:"center 69.8%",end:"center 60%"},{start:"center 69%",end:"center 60%"},{start:"center 78%",end:"center 60%"},{start:"center 88%",end:"center 60%"},{start:"center 93%",end:"center 60%"}][t]||{start:"center 70%"},s=parseFloat(l.start.split(" ")[1])/100,c=a.top+a.height/2;if(c<i*s){let $=gsap.timeline();$.to(e,{width:r?100:64,opacity:1,scale:1,duration:.2,ease:"power2.out"}).to(o,{scale:1,opacity:1,duration:.2,ease:"power2.out",onStart(){r&&"function"==typeof r.play&&r.play()}},"-=0.15")}}})},200)},100),document.addEventListener("visibilitychange",()=>{document.hidden||setTimeout(()=>{ScrollTrigger.refresh()},100)}),window.addEventListener("resize",()=>{ScrollTrigger.refresh()})})}document.addEventListener("DOMContentLoaded",function(){let e=document.querySelectorAll(".project"),t=[{before:"qw-before.webp",after:"qw.webp"},{before:"coral-before.webp",after:"coral.webp"},{before:"pb-before.webp",after:"pb.webp"},{before:"kati-before.webp",after:"kati.webp"},{before:"sara-before.webp",after:"sara.webp"}],r="https://ik.imagekit.io/onemanstudio/",n=e=>`
+function shouldRunAnimations() {
+  if (window.innerWidth < 1024) return !1;
+  let e = navigator.userAgent.toLowerCase(),
+    t = [
+      "mobile",
+      "iphone",
+      "ipod",
+      "android",
+      "blackberry",
+      "windows phone",
+      "webos",
+      "opera mini",
+    ].some((t) => e.includes(t)),
+    r = [
+      "ipad",
+      "tablet",
+      "kindle",
+      "silk",
+      "playbook",
+      "nexus 7",
+      "nexus 10",
+      "xoom",
+      "sch-i800",
+      "android 3",
+    ].some((t) => e.includes(t)),
+    n = "ontouchstart" in window || navigator.maxTouchPoints > 0;
+  return !(t || r || (n && window.innerWidth <= 1024));
+}
+let animationsAllowed = shouldRunAnimations();
+function handleResizeCheck() {
+  let e = shouldRunAnimations();
+  animationsAllowed !== e && location.reload(), (animationsAllowed = e);
+}
+if (
+  (window.addEventListener("resize", handleResizeCheck),
+  animationsAllowed ||
+    document.addEventListener("DOMContentLoaded", function () {
+      document.querySelectorAll(".reveal-type span").forEach((e) => {
+        e.style.display = "none";
+      });
+    }),
+  animationsAllowed)
+) {
+  let e = new Lenis({
+    duration: 1.2,
+    easing: (e) => Math.min(1, 1.001 - Math.pow(2, -10 * e)),
+  });
+  function t(r) {
+    e.raf(r), requestAnimationFrame(t);
+  }
+  e.on("scroll", ({ scroll: e }) => {
+    let t = document.querySelector(".hero"),
+      r = null == t ? void 0 : t.nextElementSibling;
+    if (t && r) {
+      let n = t.getBoundingClientRect();
+      if (n.bottom > 0 && n.top < window.innerHeight) {
+        let o = 0.2 * e;
+        (t.style.transform = `translateY(${o}px)`),
+          (r.style.transform = "translateY(0px)");
+      } else
+        (t.style.transform = "translateY(0px)"),
+          (r.style.transform = "translateY(0px)");
+    }
+  }),
+    requestAnimationFrame(t),
+    document.querySelectorAll("[data-lenis-link]").forEach((t) => {
+      t.addEventListener("click", (r) => {
+        r.preventDefault();
+        let n = t.getAttribute("href"),
+          o = document.querySelector(n);
+        o &&
+          e.scrollTo(o, {
+            duration: 1.2,
+            easing: (e) => Math.min(1, 1.001 - Math.pow(2, -10 * e)),
+          });
+      });
+    });
+  let r = ["Visionaries", "Champions", "Founders", "Hustlers", "Startups"],
+    n = document.querySelectorAll(
+      ".hero-backgrounds-container .hero-background"
+    ),
+    o = document.querySelector(".hero-content h1 span"),
+    a = 0,
+    i = !1,
+    l = Shery.imageEffect(".hero-backgrounds-container", {
+      style: 6,
+      gooey: !0,
+      config: {
+        noiseDetail: { value: 100 },
+        distortionAmount: { value: 0 },
+        scale: { value: 0 },
+        speed: { value: 1 },
+        zindex: { value: -9996999 },
+        aspect: { value: 2.002 },
+        ignoreShapeAspect: { value: !0 },
+        shapePosition: { value: { x: 0, y: 0 } },
+        shapeScale: { value: { x: 1, y: 1 } },
+        shapeEdgeSoftness: { value: 0 },
+        shapeRadius: { value: 0 },
+        currentScroll: { value: 0 },
+        scrollLerp: { value: 0 },
+        gooey: { value: !0 },
+        infiniteGooey: { value: !0 },
+        growSize: { value: 5 },
+        durationOut: { value: 1.5 },
+        durationIn: { value: 1 },
+        displaceAmount: { value: 0.5 },
+        masker: { value: !0 },
+        maskVal: { value: 1 },
+        scrollType: { value: 0 },
+        geoVertex: { value: 1 },
+        noEffectGooey: { value: !0 },
+        onMouse: { value: 0 },
+        noise_speed: { value: 0.2 },
+        metaball: { value: 0.09 },
+        discard_threshold: { value: 0.75 },
+        antialias_threshold: { value: 0.1 },
+        noise_height: { value: 0.4 },
+        noise_scale: { value: 20 },
+        a: { value: 2 },
+        b: { value: 1 },
+      },
+    });
+  if (o) {
+    o.textContent = r[a];
+    let s = () => {
+        if (i) return;
+        (i = !0), (a = (a + 1) % n.length);
+        let e = r[a];
+        gsap.to(o, {
+          y: -40,
+          opacity: 0,
+          duration: 0.3,
+          delay: 0.6,
+          ease: "power2.in",
+          onComplete() {
+            (o.textContent = e),
+              gsap.fromTo(
+                o,
+                { y: 40, opacity: 0 },
+                { y: 0, opacity: 1, duration: 0.4, ease: "power2.out" }
+              );
+          },
+        }),
+          l && "function" == typeof l.refresh && l.refresh(),
+          setTimeout(() => {
+            i = !1;
+          }, 1500);
+      },
+      c = (e) => {
+        0 === e.button && s();
+      };
+    n.forEach((e) => {
+      e.addEventListener("mousedown", c);
+    });
+  }
+  document.addEventListener("DOMContentLoaded", function () {
+    gsap.registerPlugin(ScrollTrigger);
+    let e = document.querySelectorAll(".reveal-type"),
+      t = gsap.timeline(),
+      r = window.innerWidth <= 1440,
+      n = r ? "blur(2px)" : "blur(4px)",
+      o = r ? "blur(0.2px)" : "blur(0.5px)";
+    function a(e, t, r) {
+      let n = e.getBoundingClientRect(),
+        o = window.innerHeight,
+        a;
+      if (r.includes("center")) {
+        let i = parseFloat(r.split(" ")[1]) / 100,
+          l = n.top + n.height / 2;
+        l < (a = o * i) && t.play();
+      } else if (r.includes("bottom")) {
+        let s = parseFloat(r.split(" ")[1]) / 100;
+        (a = o * s), n.bottom < a && t.play();
+      }
+    }
+    e.forEach((e, r) => {
+      let a = new SplitType(e, { types: "words" });
+      a.words.forEach((e, t) => {
+        if (((e.style.display = "inline-block"), t < a.words.length - 1)) {
+          let r = document.createTextNode(" ");
+          e.parentNode.insertBefore(r, e.nextSibling);
+        }
+      }),
+        gsap.set(a.words, { opacity: 0.5, filter: n }),
+        t.fromTo(
+          a.words,
+          { opacity: 0.5, filter: n },
+          {
+            opacity: 1,
+            filter: o,
+            duration: 1.5,
+            stagger: 0.2,
+            ease: "power3.out",
+          },
+          0 === r ? 0 : ">"
+        );
+    }),
+      e.length > 0 &&
+        ScrollTrigger.create({
+          trigger: e[0],
+          start: "top 60%",
+          end: "200% 20%",
+          scrub: 1,
+          animation: t,
+          toggleActions: "play play reverse reverse",
+        }),
+      e.forEach((e, t) => {
+        let r = e.querySelector(".underline-link");
+        if (r) {
+          let a = r.querySelector(".underline-anim");
+          a ||
+            (((a = document.createElement("span")).className =
+              "underline-anim"),
+            r.appendChild(a)),
+            Object.assign(a.style, {
+              position: "absolute",
+              left: 0,
+              bottom: "-4px",
+              height: "4px",
+              width: "0%",
+              background: "black",
+              borderRadius: "1px",
+              pointerEvents: "none",
+              filter: n,
+              opacity: 0.5,
+              transition: "none",
+              zIndex: 2,
+            }),
+            (r.style.position = "relative"),
+            (a.style.display = "block"),
+            gsap.set(a, { width: "0%", opacity: 0.5, filter: n });
+          let i = gsap.timeline();
+          i.to(a, {
+            width: "100%",
+            opacity: 1,
+            filter: o,
+            duration: 1.5,
+            ease: "power3.out",
+          }),
+            ScrollTrigger.create({
+              trigger: e,
+              start: "top 88%",
+              end: "top 87%",
+              scrub: 1,
+              animation: i,
+              toggleActions: "play play reverse reverse",
+            });
+        }
+      });
+    let i = document.querySelectorAll(".team-member");
+    i.forEach((e, t) => {
+      let r = e.querySelector("span");
+      if (r) {
+        let n = r.querySelectorAll("img");
+        if (n.length > 0) {
+          gsap.set(r, { width: 0, opacity: 0, scale: 0 }),
+            gsap.set(n, {
+              scale: 0,
+              opacity: 0,
+              transformOrigin: "center center",
+            });
+          let o = gsap.timeline({ paused: !0 });
+          o
+            .to(r, {
+              width: 180,
+              opacity: 1,
+              scale: 1,
+              duration: 0.25,
+              ease: "power2.out",
+            })
+            .to(
+              n,
+              {
+                scale: 1,
+                opacity: 1,
+                duration: 0.25,
+                ease: "power2.out",
+                stagger: 0.08,
+              },
+              "-=0.18"
+            ),
+            ScrollTrigger.create({
+              trigger: ".about-content",
+              start: "-50.8%  100%",
+              end: "-50.8% 60%",
+              animation: o,
+              toggleActions: "play none none reverse",
+              id: `team-member-${t}`,
+              refreshPriority: -1,
+            }),
+            a(e, o, "bottom 57.95%");
+        }
+      }
+    });
+    let l = document.querySelectorAll(".lottie-container");
+    l.forEach((e, t) => {
+      let r = e.querySelector("dotlottie-player"),
+        n = e.querySelectorAll("img"),
+        o = r || n;
+      if (e && o) {
+        gsap.set(e, { width: 0, opacity: 0, scale: 0 }),
+          gsap.set(o, {
+            scale: 0,
+            opacity: 0,
+            transformOrigin: "center center",
+          });
+        let i = gsap.timeline({ paused: !0 });
+        i.to(e, {
+          width: r ? 100 : 64,
+          opacity: 1,
+          scale: 1,
+          duration: 0.2,
+          ease: "power2.out",
+        }).to(
+          o,
+          {
+            scale: 1,
+            opacity: 1,
+            duration: 0.2,
+            ease: "power2.out",
+            onStart() {
+              r && "function" == typeof r.play && r.play();
+            },
+          },
+          "-=0.15"
+        );
+        let l = [
+          { start: "center 71%", end: "center 60%" },
+          { start: "center 70%", end: "center 60%" },
+          { start: "center 69.8%", end: "center 60%" },
+          { start: "center 69%", end: "center 60%" },
+          { start: "center 78%", end: "center 60%" },
+          { start: "center 88%", end: "center 60%" },
+          { start: "center 93%", end: "center 60%" },
+        ];
+        ScrollTrigger.create({
+          trigger: e,
+          start: l[t] ? l[t].start : "center 70%",
+          end: l[t] ? l[t].end : "center 60%",
+          animation: i,
+          toggleActions: "play none none reverse",
+          id: `anime-lottie-${t}`,
+          refreshPriority: -1,
+          onEnter() {},
+          onLeaveBack() {
+            r && "function" == typeof r.stop && r.stop();
+          },
+        });
+        let s = l[t] ? l[t].start : "center 70%";
+        a(e, i, s);
+      }
+    }),
+      setTimeout(() => {
+        ScrollTrigger.refresh(),
+          setTimeout(() => {
+            i.forEach((e, t) => {
+              let r = e.querySelector("span");
+              if (r) {
+                let n = e.getBoundingClientRect(),
+                  o = window.innerHeight;
+                if (n.bottom < 0.6 * o) {
+                  let a = gsap.timeline();
+                  a.to(r, {
+                    width: 180,
+                    opacity: 1,
+                    scale: 1,
+                    duration: 0.25,
+                    ease: "power2.out",
+                  }).to(
+                    r.querySelectorAll("img"),
+                    {
+                      scale: 1,
+                      opacity: 1,
+                      duration: 0.25,
+                      ease: "power2.out",
+                      stagger: 0.08,
+                    },
+                    "-=0.18"
+                  );
+                }
+              }
+            }),
+              l.forEach((e, t) => {
+                let r = e.querySelector("dotlottie-player"),
+                  n = e.querySelectorAll("img"),
+                  o = r || n;
+                if (e && o) {
+                  let a = e.getBoundingClientRect(),
+                    i = window.innerHeight,
+                    l = [
+                      { start: "center 71%", end: "center 60%" },
+                      { start: "center 70%", end: "center 60%" },
+                      { start: "center 69.8%", end: "center 60%" },
+                      { start: "center 69%", end: "center 60%" },
+                      { start: "center 78%", end: "center 60%" },
+                      { start: "center 88%", end: "center 60%" },
+                      { start: "center 93%", end: "center 60%" },
+                    ][t] || { start: "center 70%" },
+                    s = parseFloat(l.start.split(" ")[1]) / 100,
+                    c = a.top + a.height / 2;
+                  if (c < i * s) {
+                    let $ = gsap.timeline();
+                    $.to(e, {
+                      width: r ? 100 : 64,
+                      opacity: 1,
+                      scale: 1,
+                      duration: 0.2,
+                      ease: "power2.out",
+                    }).to(
+                      o,
+                      {
+                        scale: 1,
+                        opacity: 1,
+                        duration: 0.2,
+                        ease: "power2.out",
+                        onStart() {
+                          r && "function" == typeof r.play && r.play();
+                        },
+                      },
+                      "-=0.15"
+                    );
+                  }
+                }
+              });
+          }, 200);
+      }, 100),
+      document.addEventListener("visibilitychange", () => {
+        document.hidden ||
+          setTimeout(() => {
+            ScrollTrigger.refresh();
+          }, 100);
+      }),
+      window.addEventListener("resize", () => {
+        ScrollTrigger.refresh();
+      });
+  });
+}
+document.addEventListener("DOMContentLoaded", function () {
+  let e = document.querySelectorAll(".project"),
+    t = [
+      { before: "qw-before.webp", after: "qw.webp" },
+      { before: "coral-before.webp", after: "coral.webp" },
+      { before: "pb-before.webp", after: "pb.webp" },
+      { before: "kati-before.webp", after: "kati.webp" },
+      { before: "sara-before.webp", after: "sara.webp" },
+    ],
+    r = "https://ik.imagekit.io/onemanstudio/",
+    n = (e) =>
+      `
         ${r}${e}?tr=w-400,f-webp 400w,
         ${r}${e}?tr=w-800,f-webp 800w,
         ${r}${e}?tr=w-1200,f-webp 1200w
-    `.trim();e.forEach((e,o)=>{let a=e.querySelector(".comparison button:first-child"),i=e.querySelector(".comparison button:last-child"),l=e.querySelector(".project-thumbnail-img");if(!a||!i||!l||!t[o])return;let s=e=>{let t=document.createElement("link");t.rel="preload",t.as="image",t.href=`${r}${e}?tr=w-800,f-webp`,document.head.appendChild(t)};s(t[o].before),s(t[o].after);let c=e=>{let a=t[o][e];l.style.opacity=0,l.src=`${r}${a}?tr=w-800,f-webp`,l.srcset=n(a),l.sizes="(max-width: 600px) 100vw, (max-width: 1024px) 50vw, 25vw",l.loading="lazy",l.decoding="async",l.fetchPriority="low",requestAnimationFrame(()=>{l.style.opacity=1})};a.addEventListener("click",e=>{e.preventDefault(),c("before"),a.classList.add("active"),a.classList.remove("inactive"),i.classList.add("inactive"),i.classList.remove("active")}),i.addEventListener("click",e=>{e.preventDefault(),c("after"),i.classList.add("active"),i.classList.remove("inactive"),a.classList.add("inactive"),a.classList.remove("active")}),c("after")})});
+    `.trim();
+  e.forEach((e, o) => {
+    let a = e.querySelector(".comparison button:first-child"),
+      i = e.querySelector(".comparison button:last-child"),
+      l = e.querySelector(".project-thumbnail-img");
+    if (!a || !i || !l || !t[o]) return;
+    let s = (e) => {
+      let t = document.createElement("link");
+      (t.rel = "preload"),
+        (t.as = "image"),
+        (t.href = `${r}${e}?tr=w-800,f-webp`),
+        document.head.appendChild(t);
+    };
+    s(t[o].before), s(t[o].after);
+    let c = (e) => {
+      let a = t[o][e];
+      (l.style.opacity = 0),
+        (l.src = `${r}${a}?tr=w-800,f-webp`),
+        (l.srcset = n(a)),
+        (l.sizes = "(max-width: 600px) 100vw, (max-width: 1024px) 50vw, 25vw"),
+        (l.loading = "lazy"),
+        (l.decoding = "async"),
+        (l.fetchPriority = "low"),
+        requestAnimationFrame(() => {
+          l.style.opacity = 1;
+        });
+    };
+    a.addEventListener("click", (e) => {
+      e.preventDefault(),
+        c("before"),
+        a.classList.add("active"),
+        a.classList.remove("inactive"),
+        i.classList.add("inactive"),
+        i.classList.remove("active");
+    }),
+      i.addEventListener("click", (e) => {
+        e.preventDefault(),
+          c("after"),
+          i.classList.add("active"),
+          i.classList.remove("inactive"),
+          a.classList.add("inactive"),
+          a.classList.remove("active");
+      }),
+      c("after");
+  });
+});
